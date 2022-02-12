@@ -12,6 +12,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/css/mdui.css">
     <link rel='stylesheet' href='https://api.kinh.cc/Static/CSS/MDUI-Border-Radius.css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes">
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  displayAlign: "left",
+  displayIndent: "2em"
+});
+</script>
+
+    <script
+            type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
     <style>
         #picyzm {
             width: 100px;
@@ -51,6 +62,8 @@
     </style>
 </head>
 <body class='mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-indigo'>
+
+
     <header class='mdui-appbar mdui-appbar-fixed'>
         <div class='mdui-toolbar mdui-color-theme'>
             <h1>      </h1>
@@ -97,7 +110,7 @@
                 <div class='mdui-card'>
                     <div class='mdui-card-content'>
                         <h1><strong class='mdui-card-primary-title' style="text-align: center">答案</strong></h1>
-                        <p id="ans" style="font-size:20px;" style="text-align: center"></p>
+                        <span class='mathjax' id="ans"></span>
                     </div>
                 </div>
             </div>
@@ -115,11 +128,13 @@
                         <p id="3" style="font-size:20px;"></p>
                         <p id="4" style="font-size:20px;"></p>
                         <p id="5" style="font-size:20px;"></p>
+                        <p id="6" style="display: inline-block;font-size:20px;"></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!--
     <div class='mdui-card-content mdui-typo'>
         <div class='mdui-row-sm-1 mdui-row-lg-1'>
             <div class='mdui-col'>
@@ -145,6 +160,7 @@
             </div>
         </div>
     </div>
+    -->
     <script>
             Swal.fire({
                 toast: true,

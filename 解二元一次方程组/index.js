@@ -16,20 +16,26 @@ function count(){
         let y=(b2-a21/a11*b1)/(a22-a21/a11*a12)
         document.getElementById("ans-card").removeAttribute("hidden");
         document.getElementById("ans-card2").removeAttribute("hidden");
-        let ans="x="+x+"\n y="+y
+        let ans= '<img src="https://latex.codecogs.com/svg.image?'+
+            '\\'+'begin{cases}'+
+            'x='+x+'\\'+'\\'+
+            'y='+y+
+            '\\'+'end{cases}\"'+
+            'title="\\begin{cases}x=1\\\\y=2\\end{cases}" />';
         if (ans=="x=NaN\ny=NaN") document.getElementById('ans').innerText="有无数个解";
         else if (ans=="x=-Infinity\ny=Infinity"||ans=="x=Infinity\ny=-Infinity") document.getElementById('ans').innerText="无解";
         else {
-            document.getElementById('ans').innerText=ans;
+            document.getElementById('ans').innerHTML=ans;
             document.getElementById("ans-card2").removeAttribute("hidden");
-            document.getElementById('1').innerText="①×"+a21+"得"+a21*a11+"x+"+a21*a12+"y="+b1*a21+"③";
-            if(a21*a12<0) document.getElementById('1').innerText="①×"+a21+"得"+a21*a11+"x"+a21*a12+"y="+b1*a21+"③";
-            else document.getElementById('1').innerText="①×"+a21+"得"+a21*a11+"x+"+a21*a12+"y="+b1*a21+"③";
-            if(a22*a11<0)document.getElementById('2').innerText="②×"+a11+"得"+a21*a11+"x"+a22*a11+"y="+b2*a11+"④";
-            else document.getElementById('2').innerText="②×"+a11+"得"+a21*a11+"x+"+a22*a11+"y="+b2*a11+"④";
-            document.getElementById('3').innerText="④-③得"+"y="+y;
-            document.getElementById('4').innerText="把"+"y="+y+"代入①得"+"x="+x;
-            document.getElementById('5').innerText="∴原方程组的解为"+"x="+x+"y="+y;
+            document.getElementById('1').innerText="① × "+a21+"得"+a21*a11+"  x +"+a21*a12+" y = "+b1*a21+" ③";
+            if(a21*a12<0) document.getElementById('1').innerText="① × "+a21+"得"+a21*a11+" x "+a21*a12+" y = "+b1*a21+" ③";
+            else document.getElementById('1').innerText="① × "+a21+"得"+a21*a11+" x + "+a21*a12+" y = "+b1*a21+" ③";
+            if(a22*a11<0)document.getElementById('2').innerText="② × "+a11+"得"+a21*a11+" x "+a22*a11+" y = "+b2*a11+" ④";
+            else document.getElementById('2').innerText="② × "+a11+"得"+a21*a11+" x + "+a22*a11+" y = "+b2*a11+" ④";
+            document.getElementById('3').innerText="④ - ③ 得"+" y="+y;
+            document.getElementById('4').innerText="把 y = "+y+" 代入①得"+" x = "+x;
+            document.getElementById('5').innerHTML="∴ 原方程组的解为";
+            document.getElementById('6').innerHTML=ans;
             }
         }
 }
