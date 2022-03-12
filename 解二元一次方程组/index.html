@@ -12,16 +12,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/css/mdui.css">
     <link rel='stylesheet' href='https://api.kinh.cc/Static/CSS/MDUI-Border-Radius.css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes">
-    <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  displayAlign: "left",
-  displayIndent: "2em"
-});
-</script>
-
-    <script
-            type="text/javascript"
-            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    <script async src="https://cdn.bootcdn.net/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            enableMenu: false
+        };
     </script>
     <style>
         #picyzm {
@@ -86,19 +84,16 @@ MathJax.Hub.Config({
                     <div class='mdui-card-primary' style="text-align: center">
                         <div class='mdui-textfield'>
                             <label class='mdui-textfield-label'>方程1</label>
-                            <input id="a11" style="text-align: center">x+<input id="a12">y=<input id="b1">①<br>
+                            <input id="a11" oninput="check()">\(x+\)<input id="a12" oninput="check()">\(y=\)<input id="b1" oninput="check()">①<br>
                         </div>
                         <div class='mdui-textfield'>
                             <label class='mdui-textfield-label'>方程2</label>
-                            <input id="a21">x+<input id="a22">y=<input id="b2">②<br>
+                            <input id="a21" oninput="check()">\(x+\)<input id="a22" oninput="check()">\(y=\)<input id="b2" oninput="check()">②<br>
                         </div>
                         <div class='mdui-textfield'>
                             <label class='mdui-textfield-label'>验证码</label>
-                            <input id="code_input"><p id="picyzm"></p>
+                            <input id="code_input" oninput="check()"><p id="picyzm"></p>
                         </div>
-                        <br>
-                        <button type='button' id="btn" class='mdui-btn mdui-color-green-700 mdui-btn-block mdui-ripple' mdui-tooltip="{content:'解二元一次方程组'}"><i class='mdui-list-item-icon mdui-icon material-icons' style='margin-top:-2px'>arrow_forward</i> 计算</button>
-
                     </div>
                 </div>
             </div>
@@ -122,19 +117,12 @@ MathJax.Hub.Config({
                 <div class='mdui-card'>
                     <div class='mdui-card-content'>
                         <h1><strong class='mdui-card-primary-title' style="text-align: center">解答过程</strong></h1>
-                        <strong style="font-size:20px;">解： </strong>
-                        <p id="1" style="display: inline-block;font-size:20px;"></p>
-                        <p id="2" style="font-size:20px;"></p>
-                        <p id="3" style="font-size:20px;"></p>
-                        <p id="4" style="font-size:20px;"></p>
-                        <p id="5" style="font-size:20px;"></p>
-                        <p id="6" style="display: inline-block;font-size:20px;"></p>
+                        <h4 id="ans2"></h4>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!--
     <div class='mdui-card-content mdui-typo'>
         <div class='mdui-row-sm-1 mdui-row-lg-1'>
             <div class='mdui-col'>
@@ -160,7 +148,6 @@ MathJax.Hub.Config({
             </div>
         </div>
     </div>
-    -->
     <script>
             Swal.fire({
                 toast: true,
