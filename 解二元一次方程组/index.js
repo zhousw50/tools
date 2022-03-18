@@ -11,6 +11,11 @@ function check() {
         if (res) {
             count();
         }
+        else
+        {
+            document.getElementById("ans-card").setAttribute("hidden","true");
+            document.getElementById("ans-card2").setAttribute("hidden","true")
+        }
     }
     else
     {
@@ -25,41 +30,33 @@ function count(){
     let a22= document.getElementById("a22").value;
     let b1= document.getElementById("b1").value;
     let b2= document.getElementById("b2").value;
-    if(!a11||!a12||!a21||!a22||!b1||!b2) Swal.fire({
-        icon: 'error',
-        title: '请输入完整的二元一次方程组！',
-        showConfirmButton: false,
-        timer: 1500
-    });
-    else{
-        let x=(b1-a12*((b2-a21/a11*b1)/(a22-a21/a11*a12)))/a11
-        let y=(b2-a21/a11*b1)/(a22-a21/a11*a12)
+    let x=(b1-a12*((b2-a21/a11*b1)/(a22-a21/a11*a12)))/a11
+    let y=(b2-a21/a11*b1)/(a22-a21/a11*a12)
+    let ans= '\\('+
+        '\\'+'begin{cases}'+
+        'x='+x+'\\'+'\\'+
+        'y='+y+
+        '\\'+'end{cases}\\)';
+    if (ans=="x=NaN\ny=NaN") document.getElementById('ans').innerText="有无数个解";
+    else if (ans=="x=-Infinity\ny=Infinity"||ans=="x=Infinity\ny=-Infinity") document.getElementById('ans').innerText="无解";
+    else {
+        document.getElementById('ans').innerHTML=ans;
+        document.getElementById("ans-card2").removeAttribute("hidden");
+        var ans2;
+        if(a21*a12<0) ans2="\\(\\mbox{解：①}\\times"+a21+"\\mbox{得}\\)\\("+a21*a11+"x"+a21*a12+"y="+b1*a21+"\\mbox{ ③}\\)"+"<br>";
+        else ans2="\\(\\mbox{解：①}\\times"+a21+"\\mbox{得}\\)\\("+a21*a11+"x+"+a21*a12+"y="+b1*a21+"\\mbox{ ③}\\)"+"<br>";
+        if(a22*a11<0)ans2=ans2+"\\(\\mbox{②}\\times"+a11+"\\mbox{得}\\)\\("+a21*a11+"x"+a22*a11+"y="+b2*a11+"\\mbox{ ④}\\)"+"<br>";
+        else ans2=ans2+"\\(\\mbox{②}\\times"+a11+"\\mbox{得}\\)\\("+a21*a11+"x+"+a22*a11+"y="+b2*a11+"\\mbox{ ④}\\)"+"<br>";
+        ans2=ans2+"\\(\\mbox{④}-\\mbox{③} \\mbox{得}"+" y="+y+"\\)<br>";
+        ans2=ans2+"\\(\\mbox{把}y="+y+"\\mbox{代入①得}\\)"+"\\(x="+x+"\\)<br>";
+        ans2=ans2+"\\(\\therefore  \\mbox{原方程组的解为}\\)";
+        ans2=ans2+ans;
+        document.getElementById('ans2').innerHTML=ans2;
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         document.getElementById("ans-card").removeAttribute("hidden");
         document.getElementById("ans-card2").removeAttribute("hidden");
-        let ans= '\\('+
-            '\\'+'begin{cases}'+
-            'x='+x+'\\'+'\\'+
-            'y='+y+
-            '\\'+'end{cases}\\)';
-        if (ans=="x=NaN\ny=NaN") document.getElementById('ans').innerText="有无数个解";
-        else if (ans=="x=-Infinity\ny=Infinity"||ans=="x=Infinity\ny=-Infinity") document.getElementById('ans').innerText="无解";
-        else {
-            document.getElementById('ans').innerHTML=ans;
-            document.getElementById("ans-card2").removeAttribute("hidden");
-            var ans2;
-            if(a21*a12<0) ans2="\\(\\mbox{解：①}\\times"+a21+"\\mbox{得}\\)\\("+a21*a11+"x"+a21*a12+"y="+b1*a21+"\\mbox{ ③}\\)"+"<br>";
-            else ans2="\\(\\mbox{解：①}\\times"+a21+"\\mbox{得}\\)\\("+a21*a11+"x+"+a21*a12+"y="+b1*a21+"\\mbox{ ③}\\)"+"<br>";
-            if(a22*a11<0)ans2=ans2+"\\(\\mbox{②}\\times"+a11+"\\mbox{得}\\)\\("+a21*a11+"x"+a22*a11+"y="+b2*a11+"\\mbox{ ④}\\)"+"<br>";
-            else ans2=ans2+"\\(\\mbox{②}\\times"+a11+"\\mbox{得}\\)\\("+a21*a11+"x+"+a22*a11+"y="+b2*a11+"\\mbox{ ④}\\)"+"<br>";
-            ans2=ans2+"\\(\\mbox{④}-\\mbox{③} \\mbox{得}"+" y="+y+"\\)<br>";
-            ans2=ans2+"\\(\\mbox{把}y="+y+"\\mbox{代入①得}\\)"+"\\(x="+x+"\\)<br>";
-            ans2=ans2+"\\(\\therefore  \\mbox{原方程组的解为}\\)";
-            ans2=ans2+ans;
-            document.getElementById('ans2').innerHTML=ans2;
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-            }
-        }
     }
+}
 function count2() {
     let a=document.getElementById('a').value;
     let b=document.getElementById('b').value;
