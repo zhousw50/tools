@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <meta charset="UTF-8">
+    <title>1</title>
+    <script async src="https://cdn.bootcdn.net/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$','$'], ['\\(', '\\)']]
+            },
+            enableMenu: false,
+            showMathMenu: false
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/js/mdui.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/css/mdui.css">
+
+</head>
+<body class="mdui-color-blue-50" style="text-align: center">
+<p id="date"></p>
+<div class='mdui-card-content mdui-typo mdui-color-blue-50'>
+    <div class='mdui-row-sm-1 mdui-row-lg-1 mdui-color-blue-50'>
+        <div class='mdui-col mdui-color-blue-50' style="text-align: center">
+            <div class='mdui-card mdui-color-blue-50'>
+                <div class='mdui-card-content mdui-color-blue-50'>
+                    不等号：<button id="<" onclick="a()" class="mdui-btn-raised">\(<\)</button><button id=">" onclick="b()" class="mdui-btn-raised">\(>\)</button><button id="le" onclick="c()" class="mdui-btn-raised">\(\leqslant\)</button><button id="ge" onclick="d()" class="mdui-btn-raised">\(\geqslant \)</button><br>
+                    <input id="1" class="mdui-textfield-input mdui-float-left " style="width: 47%;">
+                    <per id="bdh">\(<\)</per>
+                    <input id="2" class="mdui-textfield-input mdui-float-right " style="width: 47%">
+                    <br><br><button onclick="jisuan()" class="mdui-btn mdui-color-green-700 mdui-btn-block mdui-ripple">计算</button>
+                    <p id="ans"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function a(){
+        document.getElementById("bdh").innerHTML="\\(<\\)"
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub])
+    }
+    function b(){
+        document.getElementById("bdh").innerHTML="\\(>\\)"
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub])
+    }
+    function c(){
+        document.getElementById("bdh").innerHTML="\\(\\leqslant\\)"
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub])
+    }
+    function d(){
+        document.getElementById("bdh").innerHTML="\\(\\geqslant\\)"
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub])
+    }
+</script>
+<script>
+    !function (){
+        document.getElementById("date").innerHTML=Date();
+    }()
+    function jisuan() {
+        document.getElementById("ans").innerHTML=""
+        var b = document.getElementById('bdh').innerText;
+        var ex1 = document.getElementById('1').value;
+        var exp2 = document.getElementById('2').value;
+        var bdh,i,xishu=0,a,changshu=0,exp1;
+        if(b=="<\n<")bdh="<";
+        if(b==">\n>")bdh=">";
+        if(b=="⩽\n⩽")bdh="⩽";
+        if(b=="⩾\n⩾")bdh="⩾";
+        for(i=0;i<ex1.length;i++)
+        {
+            if(ex1[i]=="-")
+            {
+                if(ex1[i-1]=="-") exp1+="+";//负负得正
+                else exp1+="+"+ex1[i];//在减号前加一个加号作为项的分割
+            }
+            else if(!exp1)exp1=ex1[i];
+            else exp1+=ex1[i];
+        }
+        document.getElementById("ans").innerHTML=exp1+"<br>";
+        var a=exp1.split("+")
+        for(i=0;i<a.length;i++)if(a[i]=="-")a[i]="";
+        //document.getElementById("ans").innerText=exp1;
+    }
+</script>
+</body>
+</html>
