@@ -1,4 +1,3 @@
-//此文件已经混淆 https://c.runoob.com/front-end/6939/
 (function (_0x46d5e5, _0x2a5878) {
     var _0xcf52eb = _0xdc7e, _0x227719 = _0x46d5e5();
     while (!![]) {
