@@ -20,7 +20,6 @@ function header(config) {
     header += "<\/div>";
     header += "<\/div>";
     header += "<\/div>";
-    header += "<div style='height: 130px;width:100%;'><\/div>";
     document.getElementsByTagName("header")[0].innerHTML=header;
     for(var i=1;i<=config["tool"];i++)
     {
