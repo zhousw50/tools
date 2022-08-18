@@ -1,5 +1,5 @@
 function header(config) {
-    var header="<div class=\"mdui-appbar mdui-appbar-scroll-hide mdui-appbar-fixed mdui-appbar-inset\">";
+    var header="<div class=\"mdui-appbar mdui-appbar-scroll-hide mdui-appbar-fixed\">";
     header += "<div class=\"mdui-toolbar mdui-color-"+config["color"]+"\">";
     header += "<span class=\"mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white\" mdui-drawer=\"{target: '#main-drawer', swipe: true}\"><i class=\"mdui-icon material-icons\">menu<\/i><\/span>";
     header += "<a href=\""+config["header_link"]+"\" class=\"mdui-typo-title\" id='title'>"+config["header_title"]+"<\/a>";
